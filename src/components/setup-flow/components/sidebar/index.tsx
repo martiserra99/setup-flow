@@ -1,0 +1,72 @@
+import type { Steps, FormStep, ReviewStep } from "../../types/steps";
+
+import { motion } from "motion/react";
+
+import { Step } from "./step";
+import { Logo } from "./logo";
+
+interface SidebarProps {
+  steps: Steps;
+  current: number;
+  completed: number;
+  onJump: (step: string) => void;
+}
+
+export function Sidebar({ steps, current, completed, onJump }: SidebarProps) {
+  const forms = steps.slice(0, -1) as FormStep[];
+  const review = steps[steps.length - 1] as ReviewStep;
+  return (
+    <aside className="hidden w-72 shrink-0 flex-col overflow-hidden bg-gray-950 @3xl:flex">
+      <div className="px-7 pt-8 pb-7">
+        <Logo />
+      </div>
+      <nav className="flex flex-col gap-0.5 px-4">
+        {forms.map((form: FormStep, i) => (
+          <Step
+            key={form.id}
+            position={`${i + 1}`}
+            label={form.label}
+            subtitle={form.subtitle}
+            state={state(i, current, completed)}
+            onClick={() => onJump(form.id)}
+          />
+        ))}
+        <Step
+          position={`${forms.length}`}
+          label={review.label}
+          subtitle={review.subtitle}
+          state={state(forms.length, current, completed)}
+          onClick={() => onJump(review.id)}
+        />
+      </nav>
+      <div className="mt-auto border-t border-white/10 px-6 pt-4 pb-7">
+        <div className="mb-2 flex items-center justify-between">
+          <span className="text-xs font-medium text-gray-500">
+            Step {current + 1} of {steps.length}
+          </span>
+          <span className="text-xs font-semibold text-gray-400">
+            {Math.round((completed / forms.length) * 100)}%
+          </span>
+        </div>
+        <div className="h-1 w-full overflow-hidden rounded-full bg-white/10">
+          <motion.div
+            className="h-full origin-left rounded-full bg-emerald-500"
+            animate={{ scaleX: completed / forms.length }}
+            initial={false}
+          />
+        </div>
+      </div>
+    </aside>
+  );
+}
+
+function state(step: number, current: number, completed: number) {
+  const here = step === current;
+  const done = step < completed;
+  const next = step === completed;
+  if (here && done) return "good";
+  if (here) return "here";
+  if (done) return "done";
+  if (next) return "next";
+  return "locked";
+}
