@@ -119,7 +119,7 @@ export const flow: Flow<Schema> = [
           fields: (values) => ({
             team: [values.team, []],
           }),
-          render: ({ fields, params, onNext, onJump }) => ({
+          render: ({ fields, params, next, jump }) => ({
             step: 0,
             form: (
               <Form
@@ -141,8 +141,8 @@ export const flow: Flow<Schema> = [
                   back: null,
                   next: "Continue",
                 }}
-                onNext={onNext}
-                onJump={onJump}
+                onNext={next}
+                onJump={jump}
                 prevId={null}
                 values={params.values}
                 onValuesChange={params.onValuesChange}
@@ -163,7 +163,7 @@ export const flow: Flow<Schema> = [
             name: [values.name, []],
             template: [values.template, []],
           }),
-          render: ({ fields, params, onNext, onJump }) => ({
+          render: ({ fields, params, next, jump }) => ({
             step: 1,
             form: (
               <Form
@@ -190,8 +190,8 @@ export const flow: Flow<Schema> = [
                   back: "Back",
                   next: "Continue",
                 }}
-                onNext={onNext}
-                onJump={onJump}
+                onNext={next}
+                onJump={jump}
                 prevId={team.id}
                 values={params.values}
                 onValuesChange={params.onValuesChange}
@@ -212,7 +212,7 @@ export const flow: Flow<Schema> = [
             role: [values.role, []],
             members: [values.members, []],
           }),
-          render: ({ fields, params, onNext, onJump }) => ({
+          render: ({ fields, params, next, jump }) => ({
             step: 2,
             form: (
               <Form
@@ -238,8 +238,8 @@ export const flow: Flow<Schema> = [
                   back: "Back",
                   next: "Continue",
                 }}
-                onNext={onNext}
-                onJump={onJump}
+                onNext={next}
+                onJump={jump}
                 prevId={project.id}
                 values={params.values}
                 onValuesChange={params.onValuesChange}
@@ -264,7 +264,7 @@ export const flow: Flow<Schema> = [
             slackIntegration: [values.slackIntegration, []],
             weeklyDigest: [values.weeklyDigest, []],
           }),
-          render: ({ fields, params, onNext, onJump }) => ({
+          render: ({ fields, params, next, jump }) => ({
             step: 3,
             form: (
               <Form
@@ -326,8 +326,8 @@ export const flow: Flow<Schema> = [
                   back: "Back",
                   next: "Continue",
                 }}
-                onNext={onNext}
-                onJump={onJump}
+                onNext={next}
+                onJump={jump}
                 prevId={role.id}
                 values={params.values}
                 onValuesChange={params.onValuesChange}
@@ -345,7 +345,7 @@ export const flow: Flow<Schema> = [
       at: {
         form: {
           fields: () => ({}),
-          render: ({ values, params, onNext, onJump }) => ({
+          render: ({ values, params, next, jump }) => ({
             step: 4,
             form: (
               <Review
@@ -410,8 +410,8 @@ export const flow: Flow<Schema> = [
                   back: "Back",
                   next: "Launch workspace",
                 }}
-                onNext={onNext}
-                onJump={onJump}
+                onNext={next}
+                onJump={jump}
                 prevId={config.id}
                 status={params.status}
                 ref={params.ref}

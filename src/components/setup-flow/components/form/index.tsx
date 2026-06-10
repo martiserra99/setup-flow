@@ -1,5 +1,5 @@
 import type { FieldValues, DefaultValues } from "react-hook-form";
-import type { OnNext, OnJump } from "@formity/react";
+import type { Next, Jump } from "@formity/react";
 import type { z } from "zod";
 
 import { useEffect, useEffectEvent, useImperativeHandle } from "react";
@@ -21,8 +21,8 @@ interface FormProps<T extends FieldValues, U extends T> {
     next: string;
     back: string | null;
   };
-  onNext: OnNext<T>;
-  onJump: OnJump<T>;
+  onNext: Next<T>;
+  onJump: Jump<T>;
   prevId: string | null;
   values: U;
   onValuesChange: (values: U) => void;

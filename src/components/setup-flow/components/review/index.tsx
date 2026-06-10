@@ -1,4 +1,4 @@
-import type { OnNext, OnJump } from "@formity/react";
+import type { Next, Jump } from "@formity/react";
 import type { FormStatus } from "../../types/status";
 
 import { useImperativeHandle } from "react";
@@ -16,8 +16,8 @@ interface ReviewProps {
     next: string;
     back: string;
   };
-  onNext: OnNext<Record<never, never>>;
-  onJump: OnJump<Record<never, never>>;
+  onNext: Next<Record<never, never>>;
+  onJump: Jump<Record<never, never>>;
   prevId: string;
   status: FormStatus;
   ref: React.Ref<{ jump: (id: string) => void }>;
