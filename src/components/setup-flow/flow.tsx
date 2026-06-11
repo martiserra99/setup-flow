@@ -141,9 +141,9 @@ export const flow: Flow<Schema> = [
                   back: null,
                   next: "Continue",
                 }}
-                onNext={next}
-                onJump={jump}
-                prevId={null}
+                next={next}
+                jump={jump}
+                prev={null}
                 values={params.values}
                 onValuesChange={params.onValuesChange}
                 ref={params.ref}
@@ -190,9 +190,9 @@ export const flow: Flow<Schema> = [
                   back: "Back",
                   next: "Continue",
                 }}
-                onNext={next}
-                onJump={jump}
-                prevId={team.id}
+                next={next}
+                jump={jump}
+                prev={team.id}
                 values={params.values}
                 onValuesChange={params.onValuesChange}
                 ref={params.ref}
@@ -238,9 +238,9 @@ export const flow: Flow<Schema> = [
                   back: "Back",
                   next: "Continue",
                 }}
-                onNext={next}
-                onJump={jump}
-                prevId={project.id}
+                next={next}
+                jump={jump}
+                prev={project.id}
                 values={params.values}
                 onValuesChange={params.onValuesChange}
                 ref={params.ref}
@@ -326,9 +326,9 @@ export const flow: Flow<Schema> = [
                   back: "Back",
                   next: "Continue",
                 }}
-                onNext={next}
-                onJump={jump}
-                prevId={role.id}
+                next={next}
+                jump={jump}
+                prev={role.id}
                 values={params.values}
                 onValuesChange={params.onValuesChange}
                 ref={params.ref}
@@ -410,9 +410,9 @@ export const flow: Flow<Schema> = [
                   back: "Back",
                   next: "Launch workspace",
                 }}
-                onNext={next}
-                onJump={jump}
-                prevId={config.id}
+                next={next}
+                jump={jump}
+                prev={config.id}
                 status={params.status}
                 ref={params.ref}
               />

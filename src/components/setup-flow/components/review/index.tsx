@@ -16,9 +16,9 @@ interface ReviewProps {
     next: string;
     back: string;
   };
-  onNext: Next<Record<never, never>>;
-  onJump: Jump<Record<never, never>>;
-  prevId: string;
+  next: Next<Record<never, never>>;
+  jump: Jump<Record<never, never>>;
+  prev: string;
   status: FormStatus;
   ref: React.Ref<{ jump: (id: string) => void }>;
 }
@@ -28,18 +28,18 @@ export function Review({
   message,
   content,
   buttons,
-  onNext,
-  onJump,
-  prevId,
+  next,
+  jump,
+  prev,
   status,
   ref,
 }: ReviewProps) {
   useImperativeHandle(
     ref,
     () => ({
-      jump: (id) => onJump(id, {}),
+      jump: (id) => jump(id, {}),
     }),
-    [onJump],
+    [jump],
   );
   return (
     <div className="flex flex-1 flex-col overflow-hidden">
@@ -61,13 +61,13 @@ export function Review({
       <div className="flex shrink-0 items-center justify-between border-t border-gray-100 px-12 py-5">
         <button
           type="button"
-          onClick={() => onJump(prevId, {})}
+          onClick={() => jump(prev, {})}
           disabled={status.submitting}
           className="inline-flex items-center gap-2 rounded text-sm font-medium text-gray-400 transition-colors outline-none hover:text-gray-700 focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:text-gray-400"
         >
           <ArrowLeftIcon className="size-3.5" /> Back
         </button>
-        <Button disabled={status.submitting} onClick={() => onNext({})}>
+        <Button disabled={status.submitting} onClick={() => next({})}>
           {status.submitting ? "Submitting..." : buttons.next}
           <ArrowRightIcon className="size-3.5" />
         </Button>

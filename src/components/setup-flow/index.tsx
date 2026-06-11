@@ -76,7 +76,7 @@ function Form({ status, onReturn }: FormProps) {
         steps={steps}
         current={current}
         completed={completed}
-        onJump={(step) => ref.current?.jump(step)}
+        jump={(step) => ref.current?.jump(step)}
       />
       <main className="flex flex-1 flex-col overflow-hidden">{form}</main>
     </div>

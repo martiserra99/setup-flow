@@ -9,10 +9,10 @@ interface SidebarProps {
   steps: Steps;
   current: number;
   completed: number;
-  onJump: (step: string) => void;
+  jump: (step: string) => void;
 }
 
-export function Sidebar({ steps, current, completed, onJump }: SidebarProps) {
+export function Sidebar({ steps, current, completed, jump }: SidebarProps) {
   const forms = steps.slice(0, -1) as FormStep[];
   const review = steps[steps.length - 1] as ReviewStep;
   return (
@@ -28,7 +28,7 @@ export function Sidebar({ steps, current, completed, onJump }: SidebarProps) {
             label={form.label}
             subtitle={form.subtitle}
             state={state(i, current, completed)}
-            onClick={() => onJump(form.id)}
+            onClick={() => jump(form.id)}
           />
         ))}
         <Step
@@ -36,7 +36,7 @@ export function Sidebar({ steps, current, completed, onJump }: SidebarProps) {
           label={review.label}
           subtitle={review.subtitle}
           state={state(forms.length, current, completed)}
-          onClick={() => onJump(review.id)}
+          onClick={() => jump(review.id)}
         />
       </nav>
       <div className="mt-auto border-t border-white/10 px-6 pt-4 pb-7">
